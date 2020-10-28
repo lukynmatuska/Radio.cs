@@ -9,7 +9,6 @@ namespace RadioTemplate.Radio
     {
         public event EventHandler<RadioMessage> OnRadioBroadcast;
         public event EventHandler<string> OnModeratorChange;
-
         private string currentModerator;
 
         public RadioStation()
@@ -40,8 +39,9 @@ namespace RadioTemplate.Radio
 
         private bool hasRadioMoneyToBroadcast()
         {
-            Random random = new Random();
-            return random.Next(0, 10) == 0;
+            return true;
+            // Random random = new Random();
+            // return random.Next(0, 10) == 0;
         }
     }
 }
