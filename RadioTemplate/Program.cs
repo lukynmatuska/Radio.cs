@@ -14,23 +14,35 @@ namespace RadioTemplate
             WorldTick();
 
             BrandNewRadio radio = new BrandNewRadio(radioStation);
+            OldGrandmaRadio gRadio = new OldGrandmaRadio(radioStation);
 
-            // todo logika radia
+            radio.TurnOnRadio();
+            gRadio.TurnOnRadio();
+            radioStation.changeModerator("Leos Mares");
+            radioStation.changeModerator("Lukyno Bartolino");
+            radioStation.changeModerator("Patrick Netik");
+            radio.TurnOffRadio();
+            gRadio.TurnOffRadio();
         }
 
         private static void RadioBroadcast()
         {
-            // todo try catch blok
-
-            Random random = new Random();
-
-            RadioMessageType messageType = (RadioMessageType)random.Next(0, 3);
-
-            switch (messageType)
+            try
             {
-                case RadioMessageType.Music: radioStation.BroadcastMessage(messageType, "Macky Gee - Tour"); break;
-                case RadioMessageType.News: radioStation.BroadcastMessage(messageType, "Covidem už jsou nakaženi úplně všichni!"); break;
-                case RadioMessageType.Ads: radioStation.BroadcastMessage(messageType, "Navštěvuje Vaše žena souseda příliš často? Kupte modré tablety za pouhých 99,- *vedlejší účinky zanedbatelné... Radim Uzel doporučuje."); break;
+                Random random = new Random();
+
+                RadioMessageType messageType = (RadioMessageType)random.Next(0, 3);
+
+                switch (messageType)
+                {
+                    case RadioMessageType.Music: radioStation.BroadcastMessage(messageType, "Macky Gee - Tour"); break;
+                    case RadioMessageType.News: radioStation.BroadcastMessage(messageType, "Covidem už jsou nakaženi úplně všichni!"); break;
+                    case RadioMessageType.Ads: radioStation.BroadcastMessage(messageType, "Navštěvuje Vaše žena souseda příliš často? Kupte modré tablety za pouhých 99,- *vedlejší účinky zanedbatelné... Radim Uzel doporučuje."); break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
