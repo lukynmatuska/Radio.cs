@@ -26,9 +26,7 @@ namespace RadioTemplate.RadioDevice
 
         private void Station_OnRadioBroadcast(object sender, RadioMessage e)
         {
-            // todo radio listen logic
-
-            throw new NotImplementedException();
+            Console.WriteLine($"[OldGrandmaRadio] [{e.MessageType}] {e.Moderator}: {e.Message}");
         }
     }
 }
