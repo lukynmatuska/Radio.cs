@@ -8,6 +8,7 @@ namespace RadioTemplate.Radio
     public class RadioStation
     {
         public event EventHandler<RadioMessage> OnRadioBroadcast;
+        public event EventHandler<string> OnModeratorChange;
 
         private string currentModerator;
 
@@ -16,14 +17,25 @@ namespace RadioTemplate.Radio
             ;
         }
 
+        public void changeModerator(string newModerator)
+        {
+            currentModerator = newModerator;
+            OnModeratorChange?.Invoke(this, currentModerator);
+        }
+
         public void BroadcastMessage(RadioMessageType messageType, string message)
         {
             if (!hasRadioMoneyToBroadcast())
             {
-                // todo throw exception
+                throw new RadioBankruptException();
             }
 
-            // todo invoke event
+            if (currentModerator == null)
+            {
+                throw new RadioNoModeratorException();
+            }
+
+            OnRadioBroadcast?.Invoke(this, new RadioMessage(messageType, message, currentModerator));
         }
 
         private bool hasRadioMoneyToBroadcast()
