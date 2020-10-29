@@ -1,6 +1,3 @@
-# Radio.cs
-School C# project
-
 ## Tasks
 ### RadioMessage
 Parametry v konstruktoru budou implementovány jako auto property read only.
