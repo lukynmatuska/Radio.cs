@@ -12,7 +12,8 @@ namespace RadioTemplate.RadioDevice
 
         public BrandNewRadio(RadioStation radioStation)
         {
-            this.station = radioStation;
+            station = radioStation;
+            messageHistory = new List<RadioMessage>();
         }
 
         public IEnumerable<RadioMessage> RadioSavedNews()
@@ -27,12 +28,19 @@ namespace RadioTemplate.RadioDevice
 
         public void TurnOffRadio()
         {
-            station.OnRadioBroadcast += Station_OnRadioBroadcast;
+            station.OnRadioBroadcast -= Station_OnRadioBroadcast;
+            station.OnModeratorChange -= Station_OnModeratorChange;
         }
 
         public void TurnOnRadio()
         {
-            station.OnRadioBroadcast -= Station_OnRadioBroadcast;
+            station.OnRadioBroadcast += Station_OnRadioBroadcast;
+            station.OnModeratorChange += Station_OnModeratorChange;
+        }
+
+        private void Station_OnModeratorChange(object sender, string e)
+        {
+            Console.WriteLine($"[BrandNewRadio] New moderator: {e}");
         }
 
         private void Station_OnRadioBroadcast(object sender, RadioMessage e)

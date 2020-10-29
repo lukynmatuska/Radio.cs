@@ -11,18 +11,28 @@ namespace RadioTemplate
 
         public static void Main(string[] args)
         {
+            radioStation.changeModerator("Leos Mares");
             WorldTick();
 
             BrandNewRadio radio = new BrandNewRadio(radioStation);
             OldGrandmaRadio gRadio = new OldGrandmaRadio(radioStation);
 
             radio.TurnOnRadio();
-            gRadio.TurnOnRadio();
-            radioStation.changeModerator("Leos Mares");
+            foreach (RadioMessage music in radio.RadioSavedMusic())
+            {
+                Console.WriteLine(music);
+            }
+
+            foreach (RadioMessage news in radio.RadioSavedNews()) {
+                Console.WriteLine(news);
+            }
             radioStation.changeModerator("Lukyno Bartolino");
+            //Console.WriteLine(radioStation.)
+            gRadio.TurnOnRadio();
             radioStation.changeModerator("Patrick Netik");
-            radio.TurnOffRadio();
-            gRadio.TurnOffRadio();
+            // radio.TurnOffRadio();
+            // gRadio.TurnOffRadio();
+            Console.ReadLine();
         }
 
         private static void RadioBroadcast()
