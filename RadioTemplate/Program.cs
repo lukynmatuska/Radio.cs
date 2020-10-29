@@ -9,20 +9,30 @@ namespace RadioTemplate
     {
         private static RadioStation radioStation = new RadioStation();
 
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             radioStation.changeModerator("Leos Mares");
+            WorldTick();
 
             BrandNewRadio radio = new BrandNewRadio(radioStation);
             OldGrandmaRadio gRadio = new OldGrandmaRadio(radioStation);
 
             radio.TurnOnRadio();
+            foreach (RadioMessage music in radio.RadioSavedMusic())
+            {
+                Console.WriteLine(music);
+            }
+
+            foreach (RadioMessage news in radio.RadioSavedNews()) {
+                Console.WriteLine(news);
+            }
             radioStation.changeModerator("Lukyno Bartolino");
+            //Console.WriteLine(radioStation.)
             gRadio.TurnOnRadio();
             radioStation.changeModerator("Patrick Netik");
             // radio.TurnOffRadio();
             // gRadio.TurnOffRadio();
-            await WorldTick();
+            Console.ReadLine();
         }
 
         private static void RadioBroadcast()
@@ -47,12 +57,11 @@ namespace RadioTemplate
         }
 
         #region ignore
-        private static async Task WorldTick()
+        private static async void WorldTick()
         {
             while (true)
             {
                 RadioBroadcast();
-                Console.WriteLine("Radio broadcasted!");
                 await Task.Delay(1000);
             }
         }
