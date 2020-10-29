@@ -1,37 +1,38 @@
-## Welcome to GitHub Pages
+# Radio.cs
+School C# project
 
-You can use the [editor on GitHub](https://github.com/lukynmatuska/Radio.cs/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Tasks
+### RadioMessage
+Parametry v konstruktoru budou implementovány jako auto property read only.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### RadioStation
+Metoda `hasRadioMoneyToBroadcast` náhodně generuje událost, zdali má rádio dostatek peněz na vysílání, pokud nemá, vyvolejte výjimku `RadioBankruptException`.
 
-### Markdown
+Rádio bude mít také svého moderátora (stačí jméno jako `string`), moderátor bude moci být změněn vaší novou metodou.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Pokud nebude mít rádio moderátora (jméno bude `null`), pak vyvolejte vlastní novou výjimku.
 
-```markdown
-Syntax highlighted code block
+Pokud bude mít rádio dostatek prostředků a moderátora pak vyvolejte `Event OnRadioBroadcast` posluchačům rádia. Autor zprávy bude aktuální moderátor.
 
-# Header 1
-## Header 2
-### Header 3
+Vytvořte vlastní `event`, který bude vyvolán při změně moderátora a implementujte reakci v posluchačích.
 
-- Bulleted
-- List
+### OldGrandmaRadio
+Třída slouží k vaší inspiraci, nicméně doimplementujte funkci, která je volána při vysílání rádia, stačí výstup do `console`.
 
-1. Numbered
-2. List
+### BrandNewRadio
+Doimplementujte funkce pro zapínání, vypínání a poslech rádia.
 
-**Bold** and _Italic_ and `Code` text
+Zařízení si také bude ukládat do svého interního seznamu historii vysílaných zpráv, bude ovšem ukládat pouze zprávy a hudbu (`RadioMessageType`).
 
-[Link](url) and ![Image](src)
-```
+Zařízení bude obsahovat metody na získání historie vysílaných zpráv (typ zprávy “zprávy” a “hudba”).
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+### Program
+Metodu `WorldTick` ignorujte, berte ji jako fakt, tato metoda vám každou sekundu provolá metodu `RadioBroadcast`.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lukynmatuska/Radio.cs/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Metodu `RadioBroadcast` upravte tak, aby byla obalena try catch blokem.
 
-### Support or Contact
+Implementujte vhodné ovládání našeho rádia (zařízení) zapnout vypnout a rádiové stanice (změna moderátora).
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
+Na závěr, fantazii se meze nekladou, překvapte mě nevšedním řešením! Například generátor random zpráv, hudby, atd. (můžete využít např. slovník). Neváhejte mě kdykoliv cokoliv napsat, zavolat, rád poradím!
