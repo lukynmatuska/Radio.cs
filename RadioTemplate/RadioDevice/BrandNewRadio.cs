@@ -1,6 +1,7 @@
 ﻿using RadioTemplate.Radio;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace RadioTemplate.RadioDevice
@@ -18,12 +19,12 @@ namespace RadioTemplate.RadioDevice
 
         public IEnumerable<RadioMessage> RadioSavedNews()
         {
-            return messageHistory.FindAll(ms => ms.MessageType == RadioMessageType.News);
+            return messageHistory.Where(ms => ms.MessageType == RadioMessageType.News);
         }
 
         public IEnumerable<RadioMessage> RadioSavedMusic()
         {
-            return messageHistory.FindAll(ms => ms.MessageType == RadioMessageType.Music);
+            return messageHistory.Where(ms => ms.MessageType == RadioMessageType.Music);
         }
 
         public void TurnOffRadio()
